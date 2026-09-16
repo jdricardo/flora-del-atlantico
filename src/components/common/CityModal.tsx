@@ -76,7 +76,7 @@ export function CityModal() {
 
       <p className="flex items-start gap-2 border-t border-line bg-cream/40 px-6 py-4 text-xs leading-relaxed text-ink-muted">
         <Truck className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
-        El envío es gratuito en compras iguales o superiores a {formatCOP(SHIPPING.freeThreshold)}, en cualquier ciudad.
+        El envío es gratuito en compras iguales o superiores a {formatCOP(SHIPPING.freeThreshold)}
       </p>
     </Dialog>
   );

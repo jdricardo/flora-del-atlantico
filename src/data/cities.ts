@@ -10,14 +10,14 @@ import type { City } from '@/types';
 export const CITIES: City[] = [
   { id: 'malambo', name: 'Malambo', department: 'Atlántico', sameDay: true, shippingCost: 5_000 },
   { id: 'soledad', name: 'Soledad', department: 'Atlántico', sameDay: true, shippingCost: 15_000 },
-  { id: 'barranquilla', name: 'Barranquilla', department: 'Atlántico', sameDay: true, shippingCost: 20_000 },
-  { id: 'puerto-colombia', name: 'Puerto Colombia', department: 'Atlántico', sameDay: true, shippingCost: 30_000 },
+  { id: 'barranquilla', name: 'Barranquilla', department: 'Atlántico', sameDay: true, shippingCost: 25_000 },
+  { id: 'puerto-colombia', name: 'Puerto Colombia', department: 'Atlántico', sameDay: true, shippingCost: 35_000 },
   // Resto del departamento, tarifa única
-  { id: 'galapa', name: 'Galapa', department: 'Atlántico', sameDay: true, shippingCost: 10_000 },
-  { id: 'sabanalarga', name: 'Sabanalarga', department: 'Atlántico', sameDay: true, shippingCost: 10_000 },
+  { id: 'galapa', name: 'Galapa', department: 'Atlántico', sameDay: true, shippingCost: 15_000 },
+  { id: 'sabanagrande', name: 'Sabanagrande', department: 'Atlántico', sameDay: true, shippingCost: 10_000 },
   { id: 'santo-tomas', name: 'Santo Tomás', department: 'Atlántico', sameDay: true, shippingCost: 10_000 },
   { id: 'palmar-varela', name: 'Palmar de Varela', department: 'Atlántico', sameDay: true, shippingCost: 10_000 },
-  { id: 'resto-atlantico', name: 'Resto del Atlántico', department: 'Atlántico', sameDay: true, shippingCost: 10_000 },
+  { id: 'resto-atlantico', name: 'Resto del Atlántico', department: 'Atlántico', sameDay: true, shippingCost: 20_000 },
 ];
 
 export const DEFAULT_CITY_ID = 'malambo';
