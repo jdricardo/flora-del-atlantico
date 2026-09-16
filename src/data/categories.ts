@@ -3,22 +3,13 @@ import { img } from './images';
 
 export const CATEGORIES: Category[] = [
   {
-    slug: 'arreglos-caja',
-    name: 'Arreglos en caja',
-    tagline: 'Listos para regalar',
+    slug: 'arreglos-caja-base',
+    name: 'Arreglos en caja y base',
+    tagline: 'Llegan listos y se quedan',
     description:
-      'Cajas redondas, de corazón y rectangulares armadas con rosas, girasoles y flor tropical. Varias incluyen globo, peluche o chocolates.',
-    image: img('categoria-arreglos-caja'),
-    cta: 'Ver arreglos en caja',
-  },
-  {
-    slug: 'arreglos-base',
-    name: 'Arreglos en base',
-    tagline: 'Para dejar puestos',
-    description:
-      'Composiciones montadas en base de vidrio o taza, pensadas para que lleguen listas y se queden en la mesa sin nada más que agua.',
-    image: img('categoria-arreglos-base'),
-    cta: 'Ver arreglos en base',
+      'Cajas redondas, de corazón y rectangulares, y composiciones montadas en base de vidrio o taza. Llegan armadas: unas para regalar tal cual, otras para dejar puestas en la mesa sin nada más que agua. Varias incluyen globo, peluche o chocolates.',
+    image: img('categoria-arreglos-caja-base'),
+    cta: 'Ver arreglos en caja y base',
   },
   {
     slug: 'ramos-clasicos',
@@ -59,8 +50,7 @@ export const CATEGORIES: Category[] = [
 ];
 
 export const CATEGORY_LABELS: Record<CategorySlug, string> = {
-  'arreglos-caja': 'Arreglos en caja',
-  'arreglos-base': 'Arreglos en base',
+  'arreglos-caja-base': 'Arreglos en caja y base',
   'ramos-clasicos': 'Ramos clásicos',
   'ramos-premium': 'Ramos premium',
   'ramos-tropicales': 'Ramos tropicales',

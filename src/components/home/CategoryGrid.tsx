@@ -23,7 +23,7 @@ export function CategoryCard({ category, priority = false }: { category: Categor
           className="size-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
         />
         <div
-          className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/25 to-transparent"
+          className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/45 to-ink/5"
           aria-hidden="true"
         />
       </div>
@@ -49,11 +49,13 @@ export function CategoryGrid() {
       <Container>
         <SectionHeading
           eyebrow="Explora"
-          title="Cuatro formas de regalar"
-          description="Cada categoría tiene su propio ritmo: la flor fresca para hoy, la eterna para siempre, el regalo para celebrar y el objeto para quedarse."
+          title="Cinco formas de regalar"
+          description="Cada categoría tiene su propio ritmo: el ramo para llevar en la mano, el arreglo que llega armado y listo, el color de la flor tropical y el acompañamiento en la despedida."
           className="mb-10 lg:mb-14"
         />
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">
+        {/* Cinco columnas en escritorio: con cuatro, la quinta categoría caía
+            sola en una segunda fila. */}
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 lg:gap-5">
           {CATEGORIES.map((category, index) => (
             <Reveal key={category.slug} delay={index * 90}>
               <CategoryCard category={category} priority={index < 2} />

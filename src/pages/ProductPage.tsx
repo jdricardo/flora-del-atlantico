@@ -20,6 +20,21 @@ const ASSURANCES = [
   { icon: Check, text: 'Reposición sin costo si llega en mal estado' },
 ];
 
+/**
+ * ¿La colección dice algo que la categoría no diga ya?
+ *
+ * Se comparan sin tildes ni mayúsculas, y basta con que una contenga a la otra:
+ * "Arreglos en caja" dentro de "Arreglos en caja y base" no aporta nada nuevo,
+ * mientras que "Corona en atril" sí precisa qué es el arreglo fúnebre.
+ */
+function coleccionAporta(coleccion: string, categoria: string): boolean {
+  const normalizar = (texto: string) =>
+    texto.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  const a = normalizar(coleccion);
+  const b = normalizar(categoria);
+  return !a.includes(b) && !b.includes(a);
+}
+
 export function ProductPage() {
   const { id } = useParams<{ id: string }>();
   const product = getProductById(id);
@@ -58,8 +73,16 @@ export function ProductPage() {
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-3">
               <div className="flex flex-wrap items-center gap-3">
+                {/*
+                  La colección solo se anuncia cuando dice algo que la categoría
+                  no dice ya: en los fúnebres distingue corona, cruz o sobre
+                  cajón, pero en el resto repetía el nombre de la categoría
+                  ("Colección Ramos clásicos · Ramos clásicos").
+                */}
                 <span className="eyebrow">
-                  Colección {product.collection} · {CATEGORY_LABELS[product.category]}
+                  {coleccionAporta(product.collection, CATEGORY_LABELS[product.category])
+                    ? `Colección ${product.collection} · ${CATEGORY_LABELS[product.category]}`
+                    : CATEGORY_LABELS[product.category]}
                 </span>
                 <ProductBadges badges={product.badges} />
               </div>

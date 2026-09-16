@@ -49,28 +49,36 @@ export function Header() {
         isScrolled ? 'border-line bg-ivory/92 backdrop-blur-md' : 'border-transparent bg-ivory',
       )}
     >
-      <Container>
+      {/* Margen lateral más corto solo aquí: en pantallas de 360px la marca
+          completa más el menú y los iconos no caben con el del resto del sitio. */}
+      <Container className="max-sm:px-4">
         <div
           className={cn(
-            'flex items-center justify-between gap-4 transition-[height] duration-500',
+            'flex items-center justify-between gap-2 transition-[height] duration-500 sm:gap-4',
             isScrolled ? 'h-16 lg:h-18' : 'h-18 lg:h-22',
           )}
         >
-          <div className="flex flex-1 items-center gap-1 lg:flex-none">
-            <IconButton label="Abrir menú" onClick={() => open('menu')} className="lg:hidden">
+          <div className="flex flex-1 items-center gap-1 xl:flex-none">
+            <IconButton label="Abrir menú" onClick={() => open('menu')} className="xl:hidden">
               <Menu className="size-5" aria-hidden="true" strokeWidth={1.6} />
             </IconButton>
-            <Logo className="max-lg:ml-1" />
+            <Logo className="max-xl:ml-1" />
           </div>
 
-          <nav aria-label="Menú principal" className="hidden lg:block">
-            <ul className="flex items-center gap-x-5 xl:gap-x-7">
+          {/*
+            El menú completo solo cabe desde 1280px: con siete categorías, más
+            abajo empujaba la lupa, el carrito y la ubicación fuera de la
+            pantalla. Por debajo de ese ancho se entra por el menú lateral, que
+            lista las mismas categorías.
+          */}
+          <nav aria-label="Menú principal" className="hidden xl:block">
+            <ul className="flex items-center gap-x-3">
               {MAIN_NAV.map((item) => (
                 <li key={item.to}>
                   <NavLink
                     to={item.to}
                     className={cn(
-                      'link-underline relative py-2 text-[0.72rem] font-medium tracking-[0.13em] whitespace-nowrap uppercase transition-colors',
+                      'link-underline relative py-2 text-[0.7rem] font-medium tracking-[0.08em] whitespace-nowrap uppercase transition-colors',
                       isActive(item.to) ? 'text-olive-600' : 'text-ink hover:text-olive-600',
                     )}
                     aria-current={isActive(item.to) ? 'page' : undefined}
@@ -82,14 +90,20 @@ export function Header() {
             </ul>
           </nav>
 
-          <div className="flex flex-1 items-center justify-end gap-0.5 lg:flex-none">
+          <div className="flex flex-1 items-center justify-end gap-0.5 xl:flex-none">
+            {/*
+              El nombre de la ciudad solo aparece cuando sobra ancho; por
+              debajo queda el alfiler solo, que sigue abriendo el selector.
+              Así la ubicación nunca desaparece del header.
+            */}
             <button
               type="button"
               onClick={() => open('city')}
-              className="mr-2 hidden items-center gap-1.5 rounded-full px-3 py-1.5 text-[0.7rem] tracking-[0.1em] text-ink-muted uppercase transition-colors hover:bg-cream hover:text-ink xl:flex"
+              aria-label={cityId ? `Enviar a ${cityName(cityId)}. Cambiar ciudad` : 'Elegir ciudad de entrega'}
+              className="mr-1 hidden items-center gap-1.5 rounded-full px-2.5 py-1.5 text-[0.7rem] tracking-[0.08em] text-ink-muted uppercase transition-colors hover:bg-cream hover:text-ink sm:flex 2xl:mr-2 2xl:px-3"
             >
               <MapPin className="size-3.5" aria-hidden="true" strokeWidth={1.6} />
-              {cityId ? cityName(cityId) : 'Elegir ciudad'}
+              <span className="hidden 2xl:inline">{cityId ? cityName(cityId) : 'Elegir ciudad'}</span>
             </button>
 
             <IconButton label="Buscar productos" onClick={() => open('search')}>

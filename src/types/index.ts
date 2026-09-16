@@ -8,8 +8,7 @@
 /* ============================== Catálogo ============================== */
 
 export const CATEGORY_SLUGS = [
-  'arreglos-caja',
-  'arreglos-base',
+  'arreglos-caja-base',
   'ramos-clasicos',
   'ramos-premium',
   'ramos-tropicales',

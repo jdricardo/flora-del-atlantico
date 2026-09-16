@@ -65,7 +65,13 @@ export function ContactPage() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+        {/*
+          `min-w-0` en las celdas: el ancho mínimo automático de una celda de
+          rejilla es su contenido mínimo, y el correo es una cadena sin espacios
+          por donde cortar. Sin esto la columna medía 359px y desbordaba la
+          pantalla en móviles de 375px o menos, pese al `truncate` del enlace.
+        */}
+        <div className="mt-12 grid gap-12 [&>*]:min-w-0 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           <div className="flex flex-col gap-8">
             <ul className="flex flex-col gap-3">
               {CHANNELS.map((channel) => (
@@ -83,7 +89,9 @@ export function ContactPage() {
                       <span className="block text-[0.68rem] tracking-[0.12em] text-ink-muted uppercase">
                         {channel.label}
                       </span>
-                      <span className="block truncate text-sm font-medium">{channel.value}</span>
+                      {/* Se parte en dos líneas en vez de cortarse: el correo
+                          es el dato que se viene a buscar aquí. */}
+                      <span className="block text-sm font-medium break-all">{channel.value}</span>
                     </span>
                     <span className="ml-auto shrink-0 text-[0.65rem] text-ink-muted">{channel.note}</span>
                   </a>

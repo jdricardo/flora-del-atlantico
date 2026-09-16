@@ -31,7 +31,9 @@ export function Logo({ className, compact = false }: LogoProps) {
     >
       <Mark className="size-6 shrink-0 text-olive-500 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-rotate-6" />
       <span className="flex flex-col leading-none">
-        <span className="font-serif text-[1.15rem] tracking-[0.02em] whitespace-nowrap sm:text-[1.5rem]">
+        {/* Un punto menos en pantallas de 320px: ahí la marca completa dejaba
+            la lupa y el carrito fuera del borde. */}
+        <span className="font-serif text-[1.02rem] tracking-[0.02em] whitespace-nowrap min-[360px]:text-[1.15rem] sm:text-[1.5rem]">
           {compact ? 'Flora' : SITE.name}
         </span>
         <span className="mt-0.5 hidden text-[0.55rem] tracking-[0.28em] text-ink-muted uppercase sm:block">

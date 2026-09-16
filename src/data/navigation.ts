@@ -7,8 +7,7 @@ export interface NavItem {
 export const MAIN_NAV: NavItem[] = [
   { label: 'Tienda', to: '/tienda' },
   { label: 'Ramos clásicos', to: '/tienda?categoria=ramos-clasicos' },
-  { label: 'Arreglos en caja', to: '/tienda?categoria=arreglos-caja' },
-  { label: 'Arreglos en base', to: '/tienda?categoria=arreglos-base' },
+  { label: 'Arreglos en caja y base', to: '/tienda?categoria=arreglos-caja-base' },
   { label: 'Tropicales', to: '/tienda?categoria=ramos-tropicales' },
   { label: 'Fúnebres', to: '/tienda?categoria=arreglos-funebres' },
   { label: 'Nosotros', to: '/nosotros' },
@@ -20,8 +19,7 @@ export const FOOTER_NAV: { title: string; items: NavItem[] }[] = [
     title: 'Catálogo',
     items: [
       { label: 'Toda la tienda', to: '/tienda' },
-      { label: 'Arreglos en caja', to: '/tienda?categoria=arreglos-caja' },
-      { label: 'Arreglos en base', to: '/tienda?categoria=arreglos-base' },
+      { label: 'Arreglos en caja y base', to: '/tienda?categoria=arreglos-caja-base' },
       { label: 'Ramos clásicos', to: '/tienda?categoria=ramos-clasicos' },
       { label: 'Ramos premium', to: '/tienda?categoria=ramos-premium' },
       { label: 'Ramos tropicales', to: '/tienda?categoria=ramos-tropicales' },
