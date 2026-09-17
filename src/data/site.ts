@@ -28,11 +28,18 @@ export const SITE = {
      */
     whatsapp: '@jdricardo99',
   },
+  /**
+   * Redes sociales. Se dejan en blanco mientras no haya perfiles abiertos:
+   * quien no tenga dirección aquí no aparece en ninguna parte del sitio, y el
+   * bloque "Síguenos" del pie desaparece si no queda ninguna. Publicar
+   * enlaces a perfiles que no existen manda al cliente a una página de error.
+   * Para reactivar una, basta con poner su dirección.
+   */
   social: {
-    instagram: 'https://instagram.com/floradelatlantico',
-    facebook: 'https://facebook.com/floradelatlantico',
-    pinterest: 'https://pinterest.com/floradelatlantico',
-    youtube: 'https://youtube.com/@floradelatlantico',
+    instagram: '',
+    facebook: '',
+    pinterest: '',
+    youtube: '',
   },
 } as const;
 
@@ -40,7 +47,11 @@ export const SITE = {
 export const SHIPPING = {
   /** Compras iguales o superiores a este valor no pagan envío. */
   freeThreshold: 250_000,
-  /** Costo por defecto cuando no se ha elegido ciudad: tarifa del resto del Atlántico. */
+  /**
+   * Estimado que se muestra mientras el cliente no ha elegido ciudad; en cuanto
+   * la elige manda la tarifa de `CITIES`. Queda por debajo de varias tarifas
+   * reales, así que la cifra del carrito sube al escoger destino.
+   */
   defaultCost: 10_000,
 } as const;
 
@@ -78,7 +89,9 @@ export const PRODUCT_POLICIES = {
   shipping: [
     'Entregamos únicamente en el departamento del Atlántico.',
     'Entrega el mismo día en todo el departamento para pedidos antes de las 12:00 m.',
-    'Domicilio: Malambo $5.000 · Resto del Atlántico $10.000 · Soledad $15.000 · Barranquilla $20.000 · Puerto Colombia $30.000.',
+    // Estas cifras tienen que coincidir con `CITIES` en data/cities.ts: es lo
+    // que el cliente lee antes de comprar y lo que el carrito le cobra después.
+    'Domicilio: Malambo $5.000 · Sabanagrande, Santo Tomás y Palmar de Varela $10.000 · Soledad y Galapa $15.000 · Barranquilla $25.000 · Puerto Colombia $35.000 · Resto del Atlántico $50.000.',
     'Puedes elegir fecha y franja horaria de entrega en el checkout.',
   ],
   returns: [

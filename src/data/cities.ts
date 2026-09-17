@@ -17,7 +17,7 @@ export const CITIES: City[] = [
   { id: 'sabanagrande', name: 'Sabanagrande', department: 'Atlántico', sameDay: true, shippingCost: 10_000 },
   { id: 'santo-tomas', name: 'Santo Tomás', department: 'Atlántico', sameDay: true, shippingCost: 10_000 },
   { id: 'palmar-varela', name: 'Palmar de Varela', department: 'Atlántico', sameDay: true, shippingCost: 10_000 },
-  { id: 'resto-atlantico', name: 'Resto del Atlántico', department: 'Atlántico', sameDay: true, shippingCost: 20_000 },
+  { id: 'resto-atlantico', name: 'Resto del Atlántico', department: 'Atlántico', sameDay: true, shippingCost: 50_000 },
 ];
 
 export const DEFAULT_CITY_ID = 'malambo';

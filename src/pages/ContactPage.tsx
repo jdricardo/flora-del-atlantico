@@ -111,9 +111,12 @@ export function ContactPage() {
                 <Clock className="mt-0.5 size-4 shrink-0 text-clay" aria-hidden="true" />
                 {SITE.atelier.hours}
               </p>
-              <ButtonLink href={SITE.social.instagram} variant="secondary" size="sm" className="self-start">
-                Ver en Instagram
-              </ButtonLink>
+              {/* Solo si hay perfil abierto; ver `SITE.social`. */}
+              {SITE.social.instagram && (
+                <ButtonLink href={SITE.social.instagram} variant="secondary" size="sm" className="self-start">
+                  Ver en Instagram
+                </ButtonLink>
+              )}
             </div>
           </div>
 

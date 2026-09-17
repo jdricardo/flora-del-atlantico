@@ -1,63 +1,23 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
+import { Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
 import { FOOTER_NAV, PAYMENT_LOGOS } from '@/data/navigation';
 import { SITE, whatsappLink } from '@/data/site';
-import { useToast } from '@/context/ToastContext';
 import { Container } from '@/components/ui/Container';
 import { Logo } from './Logo';
 
+/** Solo las redes que tienen perfil abierto; ver `SITE.social`. */
 const SOCIAL_LINKS = [
   { label: 'Instagram', href: SITE.social.instagram },
   { label: 'Facebook', href: SITE.social.facebook },
   { label: 'Pinterest', href: SITE.social.pinterest },
   { label: 'YouTube', href: SITE.social.youtube },
-];
+].filter((red) => red.href !== '');
 
-function Newsletter() {
-  const [email, setEmail] = useState('');
-  const { notify } = useToast();
-
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    // Punto de integración: POST /api/newsletter
-    notify({
-      variant: 'success',
-      title: 'Listo, quedaste suscrito',
-      description: 'Te escribiremos cuando salga una colección nueva.',
-    });
-    setEmail('');
-  };
-
-  return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-      <label htmlFor="newsletter-email" className="eyebrow">
-        Cartas del taller
-      </label>
-      <p className="max-w-sm text-sm leading-relaxed text-ink-muted">
-        Una vez al mes: colecciones nuevas, cuidados de temporada y acceso anticipado a ediciones limitadas.
-      </p>
-      <div className="mt-1 flex max-w-sm items-center gap-2 border-b border-clay pb-2 focus-within:border-ink">
-        <input
-          id="newsletter-email"
-          type="email"
-          required
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          placeholder="tu@correo.com"
-          className="w-full bg-transparent text-sm outline-none placeholder:text-ink-muted/60"
-        />
-        <button
-          type="submit"
-          aria-label="Suscribirme al boletín"
-          className="grid size-8 shrink-0 place-items-center rounded-full text-ink transition-all hover:bg-ink hover:text-ivory"
-        >
-          <ArrowRight className="size-4" aria-hidden="true" />
-        </button>
-      </div>
-    </form>
-  );
-}
+/*
+ * Aquí iba la suscripción al boletín. Se retiró porque no enviaba el correo a
+ * ninguna parte: respondía "Listo, quedaste suscrito" y lo descartaba. Para
+ * reponerla hace falta, además del formulario, a dónde mandar la dirección.
+ */
 
 export function Footer() {
   return (
@@ -70,7 +30,6 @@ export function Footer() {
               Distribuidora y floristería en Malambo desde {SITE.founded}. Trabajamos con cultivos de la Sabana de
               Bogotá y Antioquia, y entregamos en todo el Atlántico.
             </p>
-            <Newsletter />
           </div>
 
           <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-4">
@@ -125,28 +84,30 @@ export function Footer() {
             </a>
           </div>
 
-          <div className="flex flex-col gap-3">
-            <h3 className="eyebrow">Síguenos</h3>
-            <ul className="flex flex-wrap gap-x-5 gap-y-2">
-              {SOCIAL_LINKS.map((social) => (
-                <li key={social.label}>
-                  <a
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link-underline relative text-sm text-ink-muted transition-colors hover:text-ink"
-                  >
-                    {social.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {SOCIAL_LINKS.length > 0 && (
+            <div className="flex flex-col gap-3">
+              <h3 className="eyebrow">Síguenos</h3>
+              <ul className="flex flex-wrap gap-x-5 gap-y-2">
+                {SOCIAL_LINKS.map((social) => (
+                  <li key={social.label}>
+                    <a
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="link-underline relative text-sm text-ink-muted transition-colors hover:text-ink"
+                    >
+                      {social.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
 
         <div className="mt-12 flex flex-col gap-6 border-t border-line pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-ink-muted">
-            © {new Date().getFullYear()} {SITE.name}. Todos los derechos reservados. Contenido de demostración.
+            © {new Date().getFullYear()} {SITE.name}. Todos los derechos reservados.
           </p>
           <ul className="flex flex-wrap items-center gap-2" aria-label="Medios de pago aceptados">
             {PAYMENT_LOGOS.map((method) => (
